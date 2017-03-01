@@ -39,17 +39,22 @@ def clearImage(imgPath):
 
 def mainLoop(oldSong, imgPath, textPath):
     blankImage = False
+    paused = False
     while (1):
         songInfo = getSongInfo(textPath)
         if (songInfo["isplaying"] != "1"):
             if not blankImage:
                 clearImage(imgPath)
                 blankImage = True
-        elif (songInfo["path"] != oldSong):
-            print("New song: %s - %s" % (songInfo["artist"], songInfo["title"]))
+        elif ((songInfo["path"] != oldSong) or ((songInfo["paused"] == "1") and (paused == False)) or ((songInfo["paused"] != "1") and (paused == True))):
+            # print("New song: %s - %s" % (songInfo["artist"], songInfo["title"]))
             imageText = []
             
-            imageText.append("Now playing")
+            if songInfo["paused"] == "1":
+                paused = True
+                imageText.append("Now playing (Paused)")
+            else:
+                imageText.append("Now playing")
             imageText.append("%s - %s" % (songInfo["artist"], songInfo["title"]))
             
             if songInfo["album"]:
