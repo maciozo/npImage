@@ -2,6 +2,7 @@ import pysftp
 import getpass
 import os
 import time
+import traceback
 
 filePath = "./image.png"
 hostname = "maciozo.com"
@@ -21,12 +22,11 @@ def main(filePath, hostname, user, password, port):
     
 def mainloop(oldmt, hostname, user, password, port):
     global filePath
-    print("mainloop")
     while(1):
         mt = os.path.getmtime(filePath)
         # Check if modification time has changed
-        if (mt != oldmt):
-            print("newfile")
+        if (mt > oldmt):
+            print("File has changed. %d > %d" % (md, oldmt))
             sendFile(filePath, hostname, user, password, port)
             oldmt = mt
         time.sleep(10)
@@ -34,8 +34,12 @@ def mainloop(oldmt, hostname, user, password, port):
 def sendFile(filePath, hostname, user, password, port):
     cnopts = pysftp.CnOpts()
     cnopts.hostkeys = None
-    with pysftp.Connection(hostname, username=user, password=password, port=port, cnopts=cnopts) as sftp:
-        sftp.chdir("/home/pi/scripts/npImage/")
-        sftp.put(filePath)
+    try:
+        with pysftp.Connection(hostname, username=user, password=password, port=port, cnopts=cnopts) as sftp:
+            sftp.chdir("/home/pi/scripts/npImage/")
+            sftp.put(filePath)
+        print("File uploaded")
+    except:
+        print(traceback.format_exc())
 
 main(filePath, hostname, user, password, port)

@@ -14,7 +14,6 @@ def main():
 def createImage(text, imgPath):
     lengths = []
     for line in text:
-        # print(line)
         lengths.append(len(line))
     maxLengthIndex = lengths.index(max(lengths))
     font = ImageFont.truetype("unifont-9.0.04.ttf", 15)
@@ -44,7 +43,6 @@ def mainLoop(oldSong, imgPath, textPath):
         if (songInfo["isplaying"] != "1"):
             clearImage(imgPath)
         elif (songInfo["path"] != oldSong):
-            print("New song")
             imageText = []
             
             imageText.append("Now playing")
