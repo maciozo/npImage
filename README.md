@@ -16,7 +16,7 @@ samplerate=<samplerate>
 channels=<channels>
 filesize=<filesize>
 isplaying=<isplaying> (must be 1 when true)
-paused=<ispaused> (must be 1 when true)
+ispaused=<ispaused> (must be 1 when true)
 path=<path> (Can also just be any unique identifier for each song. This is only used to check if the song has changed.)
 playcount=<playcount>
 ```
