@@ -68,3 +68,4 @@ Configure values in `sendNP.py` and run seperately.
 ### Functionality
 - Album art in image
 - Host verification for SSH
+- Use config file rather than hardcoded variables
