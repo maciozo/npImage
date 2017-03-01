@@ -64,5 +64,6 @@ Configure values in `sendNP.py` and run seperately.
 - Font selection
 - Colour selection
 - Format selection
+
 ### Functionality
 - Album art in image
