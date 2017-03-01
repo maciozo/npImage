@@ -26,7 +26,7 @@ def mainloop(oldmt, hostname, user, password, port):
         mt = os.path.getmtime(filePath)
         # Check if modification time has changed
         if (mt > oldmt):
-            print("File has changed. %d > %d" % (md, oldmt))
+            print("File has changed. %d > %d" % (mt, oldmt))
             sendFile(filePath, hostname, user, password, port)
             oldmt = mt
         time.sleep(10)
