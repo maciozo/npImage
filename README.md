@@ -61,9 +61,10 @@ Configure values in `sendNP.py` and run seperately.
 
 ## Todo
 ### Customisation
-- Font selection
+- Font selection (to remove unifont dependancy)
 - Colour selection
 - Format selection
 
 ### Functionality
 - Album art in image
+- Host verification for SSH
