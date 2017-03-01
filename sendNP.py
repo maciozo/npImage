@@ -1,8 +1,13 @@
 import pysftp
-import getpass
 import os
 import time
 import traceback
+
+try:
+    import getpass
+    has_getpass = True
+except:
+    has_getpass = False
 
 filePath = "./image.png"
 hostname = "maciozo.com"
@@ -14,7 +19,11 @@ def main(filePath, hostname, user, password, port):
     if password:
         print("Don't put your password in the source file, dumbass.")
     else:
-        password = getpass.getpass("Password for %s@%s: " % (user, hostname))
+        if has_getpass:
+            password = getpass.getpass("Password for %s@%s: " % (user, hostname))
+        else:
+            password = input("Password for %s@%s (WILL BE VISIBLE - USE GETPASS): " % (user, hostname))
+            
     
     oldmt = os.path.getmtime(filePath)
     
