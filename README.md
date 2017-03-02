@@ -1,7 +1,8 @@
 # npImage
 Generates image with info of the currently playing song. Requires preformatted file with metadata.
 
-![Preview](https://u.nya.is/vacgoy.png)
+Preview best visible on a dark background.
+![Preview](https://u.nya.is/apzfbr.png)
 
 ## Metadata file format
 `textPath` must point to a UTF-8 text file with at least these fields.
@@ -49,62 +50,22 @@ FLAC / 1042kb/s / 16bit / 44100Hz / 2 channels / 46.5 MB
 If nothing is playing (`isplaying=x` where `x` is not `1`), it will produce a 1x1 transparent PNG.
 
 ## Sending to SFTP server
-Configure values in `npImage.json` and run seperately.
-
-## Configuration
-The `npImage.json` file is used to configure `npImage`.
-```
-{
-    "imgPath" : "./image.png", // Where to save the generated image
-    "textPath" : "./np.txt", // Path of text from which to generate the image
-    
-    "font" : "arial.ttf", // The font to use in the image
-    "fontSize" : 15, // The size of the font
-    
-    // Make sure that this format is compatible with your image format.
-    // Adjust the colours accordingly. e.g., don't include an alpha value for an RGB image.
-    // e.g. for RGB, (255, 255, 255) will be white.
-    // See https://pillow.readthedocs.io/en/4.0.x/handbook/concepts.html#concept-modes for more info.
-    "colourFormat" : "RGBA",
-    
-    "fontColour" : [0, 0, 0, 255], // 8bpc RGBA
-    "backgroundColour" : [0, 0, 0, 0], // Background colour of the image. Default is transparent.
-    
-    "borderWidth" : 0, // In pixels. Amount of white space around the generated text
-    
-    "scanInterval" : 10, // How often to check for playback changes. In seconds.
-    
-    // Paramaters for the image to be generated when no music is playing
-    // Default is a 1x1 transparent pixel.
-    "blankImageSize" : (1, 1), // Ignored if blankImageText specified. (width, height)
-    "blankImageColourFormat" : "RGBA",
-    "blankImageBackground" : [0, 0, 0, 0],
-    "blankImageText" : [""], // Will override blankImageSize if not empty. Each line is its own element in the list.
-    "blankImageFont" : "arial.ttf",
-    "blankImageFontSize" : 15,
-    "blankImageFontColour" : [0, 0, 0, 255],
-    "blankImageBorderWidth": 0, // Ignored if no text specified.
-    
-    // For SFTP (setup not required if not using sendNP.py)
-    "hostname" : "example.org", // Address of server.
-    "port" : 22, // Default SSH/SFTP port is 22
-    "username" : "username",
-    "remoteDir" : ".", // Directory on the server to upload image to.
-    "SFTPscanInterval" : 10, // How often to check for an updated image. In seconds.
-}
-```
-Note that the actual json file will not be annotated.
+Configure values in `sendNP.py` and run seperately.
 
 ## Dependancies
-- Python 3.5 (May work on others - not tested. Will probably work on 3.4)
+- Python 3.5 (May work on others - not tested)
 - Pillow
-- pysftp (If using `sendNP.py`)
+- pysftp
 - getpass (Recommended, SSH password will be visible otherwise)
+- unifont-9.0.04
 
 ## Todo
 ### Customisation
-- Coloured border
+- Font selection (to remove unifont dependancy)
+- Colour selection
+- Format selection
 
 ### Functionality
 - Album art in image
 - Host verification for SSH
+- Use config file rather than hardcoded variables
