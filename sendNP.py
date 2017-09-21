@@ -117,7 +117,7 @@ def check_config():
             exit(1)
             
     for channel in config["blankImageText"]:
-        if not isinstance(channel, basestring):
+        if not isinstance(channel, str):
             print("Invalid blankImageText value: %s. Expected type %s, got %s." % (channel, str, type(channel)))
             exit(1)
             
