@@ -1,7 +1,7 @@
 # npImage
 Generates image with info of the currently playing song. Requires preformatted file with metadata.
 
-![Preview](https://u.nya.is/vacgoy.png)
+![Preview](https://i.imgur.com/4Ln4e68.png)
 
 ## Metadata file format
 `textPath` must point to a UTF-8 text file with at least these fields.
